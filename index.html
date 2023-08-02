@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>Regna Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -18,25 +17,56 @@
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Regna
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    /* Estilos del modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>  
 </head>
+
 
 <body>
 
@@ -45,11 +75,9 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-       
         <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="index.html">Regna</a></h1>-->
+        <img src="assets/img/CSLA.png" alt="Logo" style=" width: 260px; margin-top: 20%; margin-left: -60%;">
       </div>
-
       <nav id="navbar" class="navbar">
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -61,25 +89,18 @@
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
       <h1>Bienvenid@ <br><br>a las pausas activas</h1>
       <h2>Para comezar de clic en el boton!</h2>
-<button type="button" class="btn-get-started" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
+<button type="button" class="btn btn-lg btn-outline-danger text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Iniciar
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+<div class="modal" id="myModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <div class="modal-body">
+      <!-- Modal content goes here -->
+      <h2>Modal Title</h2>
+      <p>This is the modal content.</p>
     </div>
   </div>
 </div>
@@ -123,7 +144,43 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Obtener el elemento del modal
+      const modal = document.getElementById('myModal');
 
-</body>
+      // Obtener el botón que abre el modal
+      const openModalBtn = document.querySelector('.btn-outline-danger');
 
+      // Obtener el elemento <span> que cierra el modal
+      const closeModalBtn = document.getElementById('closeModal');
+
+      // Función para abrir el modal
+      function openModal() {
+        modal.style.display = 'block';
+      }
+
+      // Función para cerrar el modal
+      function closeModal() {
+        modal.style.display = 'none';
+      }
+
+      // Evento para abrir el modal
+      openModalBtn.addEventListener('click', openModal);
+
+      // Evento para cerrar el modal
+      closeModalBtn.addEventListener('click', closeModal);
+
+      // Deshabilitar interacciones de fondo cuando se muestra el modal
+      modal.addEventListener('show.bs.modal', function () {
+        document.body.classList.add('modal-open');
+      });
+
+      // Habilitar interacciones de fondo cuando se oculta el modal
+      modal.addEventListener('hide.bs.modal', function () {
+        document.body.classList.remove('modal-open');
+      });
+    });
+  </script>
+  </body>
 </html>
