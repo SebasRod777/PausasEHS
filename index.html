@@ -109,7 +109,8 @@
 <!-- Modal -->
 <div class="modal" id="myModal">
   <div class="modal-content">
-    <span class="close" id="closeModal">&times;</span>
+    <!-- Utilizamos la clase "close" en el botón de cierre -->
+    <span class="close">&times;</span>
     <div class="modal-body">
       <div class="video-container">
         <!-- Quitamos el atributo "autoplay" del iframe -->
@@ -159,48 +160,48 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Obtener el elemento del modal
-      const modal = document.getElementById('myModal');
-  
-      // Obtener el botón que abre el modal
-      const openModalBtn = document.querySelector('.btn-outline-danger');
-  
-      // Obtener el elemento <span> que cierra el modal
-      const closeModalBtn = document.getElementById('closeModal');
-  
-      // Función para abrir el modal y reproducir el video
-      function openModal() {
-        modal.style.display = 'block';
-        const videoFrame = document.getElementById('videoFrame');
-        videoFrame.src += '&autoplay=1'; // Agregar el atributo "autoplay" al src del iframe
-      }
-  
-      // Función para cerrar el modal
-      function closeModal() {
-        modal.style.display = 'none';
-        const videoFrame = document.getElementById('videoFrame');
-        videoFrame.src = 'https://www.youtube.com/embed/EFH9soeufXY?start=7'; // Restablecer el src del iframe
-      }
-  
-      // Evento para abrir el modal y reproducir el video
-      openModalBtn.addEventListener('click', openModal);
-  
-      // Evento para cerrar el modal
-      closeModalBtn.addEventListener('click', closeModal);
-  
-      // Deshabilitar interacciones de fondo cuando se muestra el modal
-      modal.addEventListener('show.bs.modal', function () {
-        document.body.classList.add('modal-open');
-      });
-  
-      // Habilitar interacciones de fondo cuando se oculta el modal
-      modal.addEventListener('hide.bs.modal', function () {
-        document.body.classList.remove('modal-open');
-        const videoFrame = document.getElementById('videoFrame');
-        videoFrame.src = 'https://www.youtube.com/embed/EFH9soeufXY?start=7'; // Restablecer el src del iframe al cerrar el modal
-      });
+  document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el elemento del modal
+    const modal = document.getElementById('myModal');
+
+    // Obtener el botón que abre el modal
+    const openModalBtn = document.querySelector('.btn-outline-danger');
+
+    // Obtener el elemento <span> que cierra el modal
+    const closeModalBtn = document.querySelector('.modal-content .close');
+
+    // Función para abrir el modal y reproducir el video
+    function openModal() {
+      modal.style.display = 'block';
+      const videoFrame = document.getElementById('videoFrame');
+      videoFrame.src += '&autoplay=1'; // Agregar el atributo "autoplay" al src del iframe
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+      modal.style.display = 'none';
+      const videoFrame = document.getElementById('videoFrame');
+      videoFrame.src = 'https://www.youtube.com/embed/EFH9soeufXY?start=7'; // Restablecer el src del iframe
+    }
+
+    // Evento para abrir el modal y reproducir el video
+    openModalBtn.addEventListener('click', openModal);
+
+    // Evento para cerrar el modal
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Deshabilitar interacciones de fondo cuando se muestra el modal
+    modal.addEventListener('show.bs.modal', function () {
+      document.body.classList.add('modal-open');
     });
-  </script>
+
+    // Habilitar interacciones de fondo cuando se oculta el modal
+    modal.addEventListener('hide.bs.modal', function () {
+      document.body.classList.remove('modal-open');
+      const videoFrame = document.getElementById('videoFrame');
+      videoFrame.src = 'https://www.youtube.com/embed/EFH9soeufXY?start=7'; // Restablecer el src del iframe al cerrar el modal
+    });
+  });
+</script>
   </body>
 </html>
